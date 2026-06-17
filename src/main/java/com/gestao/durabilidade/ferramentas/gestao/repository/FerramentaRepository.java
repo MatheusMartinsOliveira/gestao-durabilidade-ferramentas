@@ -19,25 +19,23 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class FerramentaRepository {
-    public void cadastrarFerramenta(FerramentaDTO ferramenta){
+    public int cadastrarFerramenta(FerramentaDTO ferramenta){
+        int linhasAfetadas = 0;
         try {
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = null;
             
-            stmt = conn.prepareStatement("insert into tb_ferramentas(nome, horas_uso, vida_util_max) values(?, ?,?)");
+            stmt = conn.prepareStatement("insert into tb_ferramenta(nome, horas_uso, vida_util_max) values(?, ?,?)");
             stmt.setString(1, ferramenta.getNome());
             stmt.setInt(2, ferramenta.getHorasUso());
             stmt.setInt(3, ferramenta.getVidaUtilMaxima());
             
-            int linhasAfetadas = stmt.executeUpdate();
+            linhasAfetadas = stmt.executeUpdate();
             
-            if(linhasAfetadas == 0) {
-                throw new SQLException("nenhuma linha foi afetada!");
-            }
         } catch(SQLException e) {
         e.printStackTrace();
-        }
-    }
+        } return linhasAfetadas;
+    } 
     
     public List<FerramentaDTO> lerTodos() {
         List<FerramentaDTO> dados = new ArrayList();
@@ -62,25 +60,24 @@ public class FerramentaRepository {
         } return dados;
     }
     
-    public void deleteById(int id) {
-        FerramentaDTO ferramenta = new FerramentaDTO();
+    public int deleteById(int id) {
+        int linhasAfetadas = 0;
         try {
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = null;
             
             stmt = conn.prepareStatement("delete * from tb_ferramenta where id_ferramenta = ?");
             stmt.setInt(1, id);
-            int linhasAfetadas = stmt.executeUpdate();
+            linhasAfetadas = stmt.executeUpdate();
             
-            if(linhasAfetadas == 0) {
-                throw new SQLException("nenhuma linha foi afetada!");
-            }
+            
         }catch(SQLException e) {
             e.printStackTrace();
-        } 
+        } return linhasAfetadas;
     }
     
-    public void editarFerramenta(FerramentaDTO ferramenta) {
+    public int editarFerramenta(FerramentaDTO ferramenta) {
+        int linhasAfetadas = 0;
         try {
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = null;
@@ -90,13 +87,10 @@ public class FerramentaRepository {
             stmt.setInt(2, ferramenta.getHorasUso());
             stmt.setInt(3, ferramenta.getVidaUtilMaxima());
             stmt.setInt(4, ferramenta.getId());
-            int linhasAfetadas = stmt.executeUpdate();
+            linhasAfetadas = stmt.executeUpdate();
             
-            if(linhasAfetadas == 0) {
-                throw new SQLException("nenhuma linha foi afetada!");
-            }
         } catch(SQLException e) {
             e.printStackTrace();
-        }
+        } return linhasAfetadas;
     } 
 }

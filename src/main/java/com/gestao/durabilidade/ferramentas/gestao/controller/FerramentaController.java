@@ -19,17 +19,26 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class FerramentaController {
-    @Autowired FerramentaService service;
+    @Autowired private FerramentaService service;
     
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/ferramentas";
+    }
     @GetMapping("/ferramentas")
-    public String listarFerramentas(Model model, FerramentaDTO ferramenta) {
-        List<FerramentaDTO> lista = service.listarFerramentas(ferramenta);
-        model.addAttribute("lista", lista);
+    public String listarFerramentas(Model model) {
+        List<FerramentaDTO> lista = service.listarFerramentas();
+        model.addAttribute("ferramentas", lista);
         return "ferramentas";
     }
     @PostMapping("/ferramentas/salvar")
     public String adicionarFerramenta(FerramentaDTO ferramenta) {
         service.cadastrarFerramenta(ferramenta);
         return "salvarferramenta"; 
+    }
+    
+    @GetMapping("/cadastrar")
+    public String adicionarFerramenta() {
+        return "cadastrar";
     }
 }

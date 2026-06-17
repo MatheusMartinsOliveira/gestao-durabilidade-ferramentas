@@ -9,10 +9,10 @@ package com.gestao.durabilidade.ferramentas.gestao.model;
  * @author farma
  */
 public class FerramentaDTO {
-    int id;
-    String nome;
-    Integer horasUso;
-    Integer vidaUtilMaxima;
+    public int id;
+    public String nome;
+    public Integer horasUso;
+    public Integer vidaUtilMaxima;
 
     public FerramentaDTO() {
     }
@@ -55,10 +55,9 @@ public class FerramentaDTO {
     public void setVidaUtilMaxima(Integer vidaUtilMaxima) {
         this.vidaUtilMaxima = vidaUtilMaxima;
     }
-
     
     public Double getPercentualDesgaste() {
-        double percentualDesgaste = horasUso / vidaUtilMaxima * 100;
+        double percentualDesgaste = (horasUso / vidaUtilMaxima) * 100;
         return percentualDesgaste;
     }
 }
