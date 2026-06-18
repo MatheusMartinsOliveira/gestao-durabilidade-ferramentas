@@ -11,7 +11,46 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <div>TODO write content</div>
+    <body class="d-flex justify-content-center align-items-center vh-100">
+        <main>
+            <div class="card text-center" style="width: 350px; border-radius: 10px;">
+                <div class="card-header">
+                    <h2 class="card-title mb-4">Cadastrar Ferramenta</h2>
+                </div>
+                <div class="card-body">                   
+                    <form th:action="@{/ferramentas/salvar}" th:object="${ferramenta}" method="post">
+
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="ferramenta" th:field="*{nome}">
+                            <label for="floatingInput">Nome da ferramenta</label>
+                        </div>
+
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" id="floatingInpug2" placeholder="horasuso" th:field="*{horasUso}">
+                            <label for="floatingPassword">Horas de uso</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" id="floatingInpug3" placeholder="vidautilmax" th:field="*{vidaUtilMaxima}">
+                            <label for="floatingPassword">Vida Util Maxima</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" id="floatingInpug4" placeholder="status" th:field="*{status}">
+                            <label for="floatingPassword">Status</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" id="floatingInpug5" placeholder="idgalpao" th:field="*{idGalpao}">
+                            <label for="floatingPassword">Id Galpão</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" id="floatingInpug6" placeholder="idresponsavel" th:field="*{idUsuarioResponsavel}">
+                            <label for="floatingPassword">Id Responsavel</label>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <input class="btn btn-primary" type="submit" value="Cadastrar Ferramenta">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
     </body>
 </html>

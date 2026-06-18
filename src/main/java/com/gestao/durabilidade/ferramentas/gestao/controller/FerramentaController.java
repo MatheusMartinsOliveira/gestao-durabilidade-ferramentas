@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.gestao.durabilidade.ferramentas.gestao.controller;
 
 import com.gestao.durabilidade.ferramentas.gestao.model.FerramentaDTO;
@@ -13,32 +9,33 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-/**
- *
- * @author farma
- */
 @Controller
 public class FerramentaController {
-    @Autowired private FerramentaService service;
+    
+    @Autowired 
+    private FerramentaService service;
     
     @GetMapping("/")
     public String index() {
         return "redirect:/ferramentas";
     }
+    
     @GetMapping("/ferramentas")
     public String listarFerramentas(Model model) {
         List<FerramentaDTO> lista = service.listarFerramentas();
         model.addAttribute("ferramentas", lista);
         return "ferramentas";
     }
+    
+    @GetMapping("/cadastrar")
+    public String adicionarFerramenta(Model model) {
+        model.addAttribute("ferramenta", new FerramentaDTO());
+        return "cadastrar";
+    }
+    
     @PostMapping("/ferramentas/salvar")
     public String adicionarFerramenta(FerramentaDTO ferramenta) {
         service.cadastrarFerramenta(ferramenta);
-        return "salvarferramenta"; 
-    }
-    
-    @GetMapping("/cadastrar")
-    public String adicionarFerramenta() {
-        return "cadastrar";
+        return "redirect:/ferramentas"; 
     }
 }

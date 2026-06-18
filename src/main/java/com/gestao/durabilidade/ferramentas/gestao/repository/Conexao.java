@@ -29,6 +29,7 @@ public class Conexao {
             }
         } catch(SQLException e){
             e.printStackTrace();
+             throw new RuntimeException("Falha ao conectar com o banco de dados", e);
         } return conn;
     }
 }

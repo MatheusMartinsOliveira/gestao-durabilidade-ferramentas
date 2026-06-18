@@ -9,19 +9,26 @@ package com.gestao.durabilidade.ferramentas.gestao.model;
  * @author farma
  */
 public class FerramentaDTO {
-    public int id;
-    public String nome;
-    public Integer horasUso;
-    public Integer vidaUtilMaxima;
+    private int id;
+    private String nome;
+    private Integer horasUso;
+    private Integer vidaUtilMaxima;
+    private String status;
+    
+    private int idGalpao;
+    private int idUsuarioResponsavel;
 
     public FerramentaDTO() {
     }
 
-    public FerramentaDTO(int id, String nome, Integer horasUso, Integer vidaUtilMaxima) {
+    public FerramentaDTO(int id, String nome, Integer horasUso, Integer vidaUtilMaxima, String status, int idGalpao, int idUsuarioResponsavel) {
         this.id = id;
         this.nome = nome;
         this.horasUso = horasUso;
         this.vidaUtilMaxima = vidaUtilMaxima;
+        this.status = status;
+        this.idGalpao = idGalpao;
+        this.idUsuarioResponsavel = idUsuarioResponsavel;
     }
 
     public int getId() {
@@ -55,7 +62,33 @@ public class FerramentaDTO {
     public void setVidaUtilMaxima(Integer vidaUtilMaxima) {
         this.vidaUtilMaxima = vidaUtilMaxima;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getIdGalpao() {
+        return idGalpao;
+    }
+
+    public void setIdGalpao(int idGalpao) {
+        this.idGalpao = idGalpao;
+    }
+
+    public int getIdUsuarioResponsavel() {
+        return idUsuarioResponsavel;
+    }
+
+    public void setIdUsuarioResponsavel(int idUsuarioResponsavel) {
+        this.idUsuarioResponsavel = idUsuarioResponsavel;
+    }
     
+    
+
     public Double getPercentualDesgaste() {
         double percentualDesgaste = (horasUso / vidaUtilMaxima) * 100;
         return percentualDesgaste;

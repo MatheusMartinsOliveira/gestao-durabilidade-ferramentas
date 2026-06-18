@@ -25,10 +25,13 @@ public class FerramentaRepository {
             Connection conn = Conexao.conectar();
             PreparedStatement stmt = null;
             
-            stmt = conn.prepareStatement("insert into tb_ferramenta(nome, horas_uso, vida_util_max) values(?, ?,?)");
+            stmt = conn.prepareStatement("insert into tb_ferramenta(nome, horas_uso, vida_util_max, status, id_galpao, id_usuario_responsavel) values(?, ?, ?, ?, ?, ?)");
             stmt.setString(1, ferramenta.getNome());
             stmt.setInt(2, ferramenta.getHorasUso());
             stmt.setInt(3, ferramenta.getVidaUtilMaxima());
+            stmt.setString(4, ferramenta.getStatus());
+            stmt.setInt(5, ferramenta.getIdGalpao());
+            stmt.setInt(6, ferramenta.getIdUsuarioResponsavel());
             
             linhasAfetadas = stmt.executeUpdate();
             
